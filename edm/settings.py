@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import django.conf.global_settings as DEFAULTS
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -36,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'south',
     'djangobower',
     'main',
@@ -78,12 +81,26 @@ USE_L10N = True
 
 USE_TZ = True
 
+SOCIAL_AUTH_GITHUB_KEY = 'fe0963d1e725d67f2ce7'
+SOCIAL_AUTH_GITHUB_SECRET = '5568ebb7b5e327f02a3e028f7c3cd1ba3a3967f9'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.github.GithubOAuth2',
+    'social.apps.django_app.utils.BackendWrapper',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULTS.TEMPLATE_CONTEXT_PROCESSORS + (
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_FINDERS = (
+STATICFILES_FINDERS = DEFAULTS.STATICFILES_FINDERS + (
     'djangobower.finders.BowerFinder',
 )
 

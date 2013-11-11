@@ -18,6 +18,28 @@
 	<![endif]-->
   </head>
   <body>
-	<h1>Hello, world!</h1>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">Unassociated Backends</div>
+			<ul class="list-group">
+				{% for name in backends.not_associated %}
+				<li class="list-group-item">
+					{{ name }}
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Associated Backends</div>
+			<ul class="list-group">
+				{% for association in backends.associated %}
+				<li class="list-group-item">
+					{{ association.provider }}
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
   </body>
 </html>

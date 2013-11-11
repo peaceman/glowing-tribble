@@ -1,4 +1,9 @@
 Django==1.6
 South==0.8.2
 django-bower==4.8
+oauthlib==0.6.0
+python-openid==2.2.5
+python-social-auth==0.1.16
+requests==2.0.1
+requests-oauthlib==0.4.0
 six==1.4.1
