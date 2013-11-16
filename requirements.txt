@@ -1,6 +1,8 @@
 Django==1.6
+MySQL-python==1.2.4
 South==0.8.2
 django-bower==4.8
+django-extensions==1.2.5
 oauthlib==0.6.0
 python-openid==2.2.5
 python-social-auth==0.1.16
