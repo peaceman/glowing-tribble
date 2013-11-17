@@ -1,3 +1,7 @@
 from django.contrib import admin
+from edmmusic.models import MusicBanks, MusicGenre, MusicProgram, MusicPlugins
 
-# Register your models here.
+admin.site.register(MusicBanks)
+admin.site.register(MusicGenre)
+admin.site.register(MusicProgram)
+admin.site.register(MusicPlugins)
