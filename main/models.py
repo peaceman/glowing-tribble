@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 from edm.models import SoftDeletionModel
+from edmmusic.models import MusicGenre, MusicProgram, MusicPlugins, MusicBanks
 
 
 class UserAgent(models.Model):
@@ -42,51 +43,6 @@ class Review(models.Model):
 class ReviewableModelManager(models.Manager):
     def get_queryset(self):
         return super(ReviewableModelManager, self).get_queryset().filter(reviewed=True)
-
-
-class MusicGenre(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    reviewed = models.BooleanField(default=False)
-    session = models.ForeignKey(UserSession)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    public_objects = ReviewableModelManager()
-
-
-class MusicProgram(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    reviewed = models.BooleanField(default=False)
-    session = models.ForeignKey(UserSession)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    public_objects = ReviewableModelManager()
-
-
-class MusicPlugins(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    software = models.ForeignKey(MusicProgram)
-    reviewed = models.BooleanField(default=False)
-    session = models.ForeignKey(UserSession)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    public_objects = ReviewableModelManager()
-
-
-class MusicBanks(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    plugin = models.ForeignKey(MusicPlugins)
-    reviewed = models.BooleanField(default=False)
-    session = models.ForeignKey(UserSession)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    public_objects = ReviewableModelManager()
-
-
-
 
 
 class ProjectFileCategory(models.Model):
