@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 from edm.models import SoftDeletionModel
 from edmmusic.models import MusicGenre, MusicProgram, MusicPlugins, MusicBanks
+from edmreview.models import Review
 
 
 class UserAgent(models.Model):
@@ -21,28 +22,6 @@ class UserSessionVisitedUrls(models.Model):
     url = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
     session = models.ForeignKey(UserSession)
-
-
-class Review(models.Model):
-    WAITING = 1
-    RUNNING = 2
-    FINISHED = 3
-    STATES = (
-        (WAITING, _('Waiting')),
-        (RUNNING, _('Running')),
-        (FINISHED, _('Finished')),
-    )
-
-    state = models.PositiveSmallIntegerField(choices=STATES, default=WAITING, db_index=True)
-    result = models.NullBooleanField(default=None)
-    result_reasoning = models.TextField(null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
-class ReviewableModelManager(models.Manager):
-    def get_queryset(self):
-        return super(ReviewableModelManager, self).get_queryset().filter(reviewed=True)
 
 
 class ProjectFileCategory(models.Model):
