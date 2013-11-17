@@ -1,3 +1,5 @@
 from django.contrib import admin
+from edmupload.models import *
 
-# Register your models here.
+admin.site.register(UploadedFile)
+admin.site.register(UploadedFolderTmpFile)
