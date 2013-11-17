@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext_lazy
 from jsonfield import JSONField
+from edmproject.models import ProjectFileVersion
 from edmuser.models import UserSession
-from main.models import ProjectFileVersion
+
 
 class UploadedFolderTmpFile(models.Model):
     directory_identifier = models.CharField(max_length=36, db_index=True)
