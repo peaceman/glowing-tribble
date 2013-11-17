@@ -14,6 +14,9 @@ class UserSession(models.Model):
     user_agent = models.ForeignKey(UserAgent)
     created_at = CreationDateTimeField()
 
+    class Meta:
+        get_latest_by = 'created_at'
+
     @classmethod
     def create_from_login_signal(cls, **kwargs):
         print kwargs
