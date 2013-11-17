@@ -25,7 +25,7 @@ class MusicProgram(models.Model):
 
 class MusicPlugin(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    software = models.ForeignKey(MusicProgram)
+    program = models.ForeignKey(MusicProgram)
     reviewed = models.BooleanField(default=False)
     session = models.ForeignKey(UserSession)
     created_at = models.DateTimeField(auto_now_add=True)
