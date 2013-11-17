@@ -19,7 +19,6 @@ class UserIpAddressMiddleware(object):
 
 class UserSessionMiddleware(object):
     def process_request(self, request):
-        print 'user is authenticated', request.user.is_authenticated()
         if request.user.is_authenticated():
             request.user_session = request.user.usersession_set.latest()
 

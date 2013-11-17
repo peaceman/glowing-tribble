@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'djangobower',
     'django_extensions',
     'taggit',
+    'account',
     'main',
     'edmmusic',
     'edmproject',
@@ -62,6 +63,8 @@ MIDDLEWARE_CLASSES = (
     'edmuser.middleware.UserUrlTrackerMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'edm.urls'
@@ -107,6 +110,11 @@ AUTHENTICATION_BACKENDS = DEFAULTS.AUTHENTICATION_BACKENDS + (
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULTS.TEMPLATE_CONTEXT_PROCESSORS + (
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
+    'account.context_processors.account',
+)
+
+TEMPLATE_LOADERS = DEFAULTS.TEMPLATE_LOADERS + (
+
 )
 
 # Static files (CSS, JavaScript, Images)
