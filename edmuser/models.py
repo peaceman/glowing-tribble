@@ -27,7 +27,7 @@ class UserSession(models.Model):
             user_agent=user_agent).save()
 
 
-class UserSessionVisitedUrls(models.Model):
+class UserSessionVisitedUrl(models.Model):
     url = models.URLField()
     created_at = CreationDateTimeField()
     session = models.ForeignKey(UserSession)

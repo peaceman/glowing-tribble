@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http.request import HttpRequest
-from edmuser.models import UserSession, UserSessionVisitedUrls
+from edmuser.models import UserSession, UserSessionVisitedUrl
 
 
 class UserIpAddressMiddleware(object):
@@ -27,4 +27,4 @@ class UserSessionMiddleware(object):
 class UserUrlTrackerMiddleware(object):
     def process_request(self, request):
         if hasattr(request, 'user_session'):
-            UserSessionVisitedUrls(url=request.build_absolute_uri(), session=request.user_session).save()
+            UserSessionVisitedUrl(url=request.build_absolute_uri(), session=request.user_session).save()
