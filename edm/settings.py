@@ -44,6 +44,12 @@ INSTALLED_APPS = (
     'django_extensions',
     'taggit',
     'main',
+    'edmmusic',
+    'edmproject',
+    'edmpurchase',
+    'edmreview',
+    'edmupload',
+    'edmuser',
 )
 
 MIDDLEWARE_CLASSES = (
