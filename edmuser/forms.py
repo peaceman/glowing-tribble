@@ -2,9 +2,14 @@ import account.forms
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
+from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 
 class SignupForm(account.forms.SignupForm):
+    first_name = forms.CharField(label=_("First name"), max_length=30, widget=forms.TextInput(), required=True)
+    last_name = forms.CharField(label=_("Last name"), max_length=30, widget=forms.TextInput(), required=True)
+
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
         #self.helper = FormHelper(self)
