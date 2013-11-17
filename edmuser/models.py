@@ -1,16 +1,18 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django_extensions.db.fields import CreationDateTimeField
 
 
 class UserAgent(models.Model):
     value = models.TextField()
+    created_at = CreationDateTimeField()
 
 
 class UserSession(models.Model):
     user = models.ForeignKey(User)
     ip_address = models.GenericIPAddressField()
     user_agent = models.ForeignKey(UserAgent)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = CreationDateTimeField()
 
     @classmethod
     def create_from_login_signal(cls, **kwargs):
@@ -24,5 +26,5 @@ class UserSession(models.Model):
 
 class UserSessionVisitedUrls(models.Model):
     url = models.URLField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = CreationDateTimeField()
     session = models.ForeignKey(UserSession)
