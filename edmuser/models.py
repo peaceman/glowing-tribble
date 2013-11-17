@@ -19,7 +19,6 @@ class UserSession(models.Model):
 
     @classmethod
     def create_from_login_signal(cls, **kwargs):
-        print kwargs
         user_agent, user_agent_created = UserAgent.objects.get_or_create(
             value=kwargs['request'].META.get('HTTP_USER_AGENT', ''))
         cls(user=kwargs['user'],
