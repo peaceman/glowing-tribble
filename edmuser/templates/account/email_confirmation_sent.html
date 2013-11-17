@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="page-header">
+        <h1>{% trans "Confirm your email address" %}</h1>
+    </div>
+
+    <p>{% blocktrans %}We have sent you an email to <b>{{ email }}</b> for verification. Follow the link provided to
+        finalize the signup process. If you do not receive it within a few minutes, contact us at
+        <a href="mailto:{{ THEME_ACCOUNT_CONTACT_EMAIL }}">{{ THEME_ACCOUNT_CONTACT_EMAIL }}</a>.{% endblocktrans %}</p>
+    <p><a href="{{ success_url }}">Go back</a></p>
+{% endblock %}

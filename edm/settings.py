@@ -28,7 +28,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+SITE_ID = 1
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Application definition
 
 INSTALLED_APPS = (
@@ -38,12 +41,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'social.apps.django_app.default',
     'south',
     'djangobower',
     'django_extensions',
     'taggit',
     'account',
+    'crispy_forms',
     'main',
     'edmmusic',
     'edmproject',

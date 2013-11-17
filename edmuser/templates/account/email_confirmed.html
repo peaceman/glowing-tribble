@@ -1,0 +1,9 @@
+{% extends 'main/layout.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="page-header">
+        <h1>{% trans "Email confirmed" %}</h1>
+    </div>
+    <p>{% blocktrans with email=confirmation.email_address.email %}You have confirmed
+        <b>{{ email }}</b>{% endblocktrans %}</p>
+{% endblock %}
