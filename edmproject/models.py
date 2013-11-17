@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from taggit.managers import TaggableManager
 from edm.models import SoftDeletionModel
-from edmmusic.models import MusicGenre, MusicProgram, MusicPlugins, MusicBanks
+from edmmusic.models import MusicGenre, MusicProgram, MusicPlugin, MusicBank
 from edmreview.models import Review
 from edmuser.models import UserSession
 
@@ -30,7 +30,7 @@ class ProjectFileVersion(models.Model):
     tags = TaggableManager()
     genre = models.ForeignKey(MusicGenre)
     compatible_programs = models.ManyToManyField(MusicProgram)
-    compatible_plugins = models.ManyToManyField(MusicPlugins)
-    compatible_banks = models.ManyToManyField(MusicBanks)
+    compatible_plugins = models.ManyToManyField(MusicPlugin)
+    compatible_banks = models.ManyToManyField(MusicBank)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

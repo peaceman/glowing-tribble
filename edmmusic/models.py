@@ -23,7 +23,7 @@ class MusicProgram(models.Model):
     public_objects = ReviewableModelManager()
 
 
-class MusicPlugins(models.Model):
+class MusicPlugin(models.Model):
     name = models.CharField(max_length=255, unique=True)
     software = models.ForeignKey(MusicProgram)
     reviewed = models.BooleanField(default=False)
@@ -34,9 +34,9 @@ class MusicPlugins(models.Model):
     public_objects = ReviewableModelManager()
 
 
-class MusicBanks(models.Model):
+class MusicBank(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    plugin = models.ForeignKey(MusicPlugins)
+    plugin = models.ForeignKey(MusicPlugin)
     reviewed = models.BooleanField(default=False)
     session = models.ForeignKey(UserSession)
     created_at = models.DateTimeField(auto_now_add=True)
