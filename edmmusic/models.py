@@ -1,6 +1,6 @@
 from django.db import models
 from edmreview.models import ReviewableModelManager
-from main.models import UserSession
+from edmuser.models import UserSession
 
 
 class MusicGenre(models.Model):

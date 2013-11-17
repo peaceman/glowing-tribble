@@ -5,23 +5,7 @@ from taggit.managers import TaggableManager
 from edm.models import SoftDeletionModel
 from edmmusic.models import MusicGenre, MusicProgram, MusicPlugins, MusicBanks
 from edmreview.models import Review
-
-
-class UserAgent(models.Model):
-    value = models.TextField()
-
-
-class UserSession(models.Model):
-    user = models.ForeignKey(User)
-    ip_address = models.GenericIPAddressField()
-    user_agent = models.ForeignKey(UserAgent)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-
-class UserSessionVisitedUrls(models.Model):
-    url = models.URLField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    session = models.ForeignKey(UserSession)
+from edmuser.models import UserSession
 
 
 class ProjectFileCategory(models.Model):
