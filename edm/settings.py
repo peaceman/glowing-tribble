@@ -116,6 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULTS.TEMPLATE_CONTEXT_PROCESSORS + (
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
     'account.context_processors.account',
+    'edmproject.context_processors.categories',
 )
 
 TEMPLATE_LOADERS = DEFAULTS.TEMPLATE_LOADERS + (

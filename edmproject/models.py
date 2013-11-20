@@ -9,6 +9,7 @@ from edmuser.models import UserSession
 
 class ProjectFileCategory(models.Model):
     name = models.CharField(max_length=255, db_index=True)
+    slug = models.SlugField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
