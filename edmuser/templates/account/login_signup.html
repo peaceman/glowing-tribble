@@ -1,0 +1,184 @@
+{% extends 'main/layout.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="page-header">
+        <h1>{% trans 'Log in & Sign up' %}
+            <small>{% trans 'log into or create an account' %}</small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" action="{% url 'account_login' %}" method="POST">
+                {% csrf_token %}
+                {% for hidden in login_form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">{% trans 'Already a member? Log in:' %}</h2>
+                    </div>
+                    <div class="panel-body">
+                        {% for error in login_form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        <div class="form-group {% if login_form.username.errors %}has-error{% endif %}">
+                            <label class="col-md-2 control-label"
+                                   for="{{ login_form.username.id_for_label }}">{{ login_form.username.label }}</label>
+
+                            <div class="col-md-10">
+                                <input class="form-control" id="{{ login_form.username.id_for_label }}"
+                                       name="{{ login_form.username.html_name }}" type="text"/>
+                                {% if login_form.username.errors %}
+                                    <div class="help-block">
+                                        {{ login_form.username.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group {% if login_form.password.errors %}has-error{% endif %}">
+                            <label class="col-md-2 control-label"
+                                   for="{{ login_form.password.id_for_label }}">{{ login_form.password.label }}</label>
+
+                            <div class="col-md-10">
+                                <input class="form-control" type="password" id="{{ login_form.password.id_for_label }}"
+                                       name="{{ login_form.password.html_name }}"/>
+                                {% if login_form.password.errors %}
+                                    <div class="help-block">
+                                        {{ login_form.password.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group {% if login_form.remember.errors %}has-error{% endif %}">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        {{ login_form.remember }} {{ login_form.remember.label }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-default btn-block btn-primary">{% trans 'Log in' %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form action="{% url 'account_signup' %}" method="POST">
+                {% csrf_token %}
+                {% for hidden in signup_form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">{% trans "Create an account. It's free!" %}</h2>
+                    </div>
+                    <div class="panel-body">
+                        {% for error in signup_form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group {% if signup_form.first_name.errors %}has-error{% endif %}">
+                                    <label class="control-label"
+                                           for="{{ signup_form.first_name.id_for_label }}">{{ signup_form.first_name.label }}</label>
+                                    <input class="form-control" id="{{ signup_form.first_name.id_for_label }}"
+                                           value="{{ signup_form.first_name.value|default_if_none:"" }}"
+                                           name="{{ signup_form.first_name.html_name }}" type="text"/>
+                                    {% if signup_form.first_name.errors %}
+                                        <div class="help-block">
+                                            {{ signup_form.first_name.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group {% if signup_form.last_name.errors %}has-error{% endif %}">
+                                    <label class="control-label"
+                                           for="{{ signup_form.last_name.id_for_label }}">{{ signup_form.last_name.label }}</label>
+                                    <input class="form-control" id="{{ signup_form.last_name.id_for_label }}"
+                                           value="{{ signup_form.last_name.value|default_if_none:"" }}"
+                                           name="{{ signup_form.last_name.html_name }}" type="text"/>
+                                    {% if signup_form.last_name.errors %}
+                                        <div class="help-block">
+                                            {{ signup_form.last_name.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group {% if signup_form.username.errors %}has-error{% endif %}">
+                            <label class="control-label"
+                                   for="{{ signup_form.username.id_for_label }}">{{ signup_form.username.label }}</label>
+                            <input class="form-control" id="{{ signup_form.username.id_for_label }}"
+                                   value="{{ signup_form.username.value|default_if_none:"" }}"
+                                   name="{{ signup_form.username.html_name }}"
+                                   type="text"/>
+                            {% if signup_form.username.errors %}
+                                <div class="help-block">
+                                    {{ signup_form.username.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group {% if signup_form.email.errors %}has-error{% endif %}">
+                            <label class="control-label"
+                                   for="{{ signup_form.email.id_for_label }}">{{ signup_form.email.label }}</label>
+                            <input class="form-control" id="{{ signup_form.email.id_for_label }}"
+                                   value="{{ signup_form.email.value|default_if_none:"" }}"
+                                   name="{{ signup_form.email.html_name }}"
+                                   type="text"/>
+                            {% if signup_form.email.errors %}
+                                <div class="help-block">
+                                    {{ signup_form.email.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group {% if signup_form.password.errors %}has-error{% endif %}">
+                                    <label class="control-label"
+                                           for="{{ signup_form.password.id_for_label }}">{{ signup_form.password.label }}</label>
+                                    <input class="form-control" type="password"
+                                           id="{{ signup_form.password.id_for_label }}"
+                                           name="{{ signup_form.password.html_name }}"/>
+                                    {% if signup_form.password.errors %}
+                                        <div class="help-block">
+                                            {{ signup_form.password.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group {% if signup_form.password_confirm.errors %}has-error{% endif %}">
+                                    <label class="control-label"
+                                           for="{{ signup_form.password_confirm.id_for_label }}">{{ signup_form.password_confirm.label }}</label>
+                                    <input class="form-control" type="password"
+                                           id="{{ signup_form.password_confirm.id_for_label }}"
+                                           name="{{ signup_form.password_confirm.html_name }}"/>
+                                    {% if signup_form.password_confirm.errors %}
+                                        <div class="help-block">
+                                            {{ signup_form.password_confirm.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <button type="submit"
+                                class="btn btn-default btn-block btn-success">{% trans 'Sign up' %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
