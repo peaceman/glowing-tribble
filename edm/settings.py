@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.webdesign',
     'social.apps.django_app.default',
     'south',
     'djangobower',
@@ -120,7 +121,7 @@ TEMPLATE_CONTEXT_PROCESSORS = DEFAULTS.TEMPLATE_CONTEXT_PROCESSORS + (
 )
 
 TEMPLATE_LOADERS = DEFAULTS.TEMPLATE_LOADERS + (
-
+    'django.template.loaders.app_directories.Loader',
 )
 
 # Static files (CSS, JavaScript, Images)

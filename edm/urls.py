@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from edmproject.views import ProjectFileCreate
 import edmuser.views
 
 admin.autodiscover()
@@ -13,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^account/signup/$', edmuser.views.SignUpView.as_view(), name='account_signup'),
     url(r'^account/login/$', edmuser.views.LoginView.as_view(), name='account_login'),
     url(r'^account/', include('account.urls')),
+    url(r'^project-file/create/$', ProjectFileCreate.as_view(), name='project_file_create'),
     url(r'^admin/', include(admin.site.urls)),
 )

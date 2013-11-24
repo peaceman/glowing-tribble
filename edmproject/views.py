@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
+from edmproject.models import ProjectFile
 
-# Create your views here.
+
+class ProjectFileCreate(CreateView):
+    model = ProjectFile

@@ -1,0 +1,43 @@
+{% extends 'main/layout.html' %}
+{% load i18n %}
+{% load webdesign %}
+{% block content %}
+    <div class="page-header">
+        <h1>{% trans 'Create a new project file' %}</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">{% trans 'Pay attention' %}</h2>
+                </div>
+                <div class="panel-body">
+                    {% lorem %}
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans 'Copyright' %}</h4>
+                        <p class="list-group-item-text">
+                            {% lorem %}
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans 'Licenses' %}</h4>
+                        <p class="list-group-item-text">
+                            {% lorem %}
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans 'Bla bla bla' %}</h4>
+                        <p class="list-group-item-text">
+                            {% lorem %}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
